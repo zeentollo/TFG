@@ -30,7 +30,7 @@
 #footer{
   text-align: center;
   padding: 15px;
-  background-color: #8d8d8d;
+  background-color: #acacac;
   #lista_footer{
     display: flex;
     flex-direction: row;
