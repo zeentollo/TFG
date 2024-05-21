@@ -12,7 +12,8 @@ const connection = mysql.createPool({
 });
 
 const register = async (user) => {
-    await connection.execute('INSERT INTO user (name, date, email, pass) VALUES (?,?,?)', [user.name, user.date, user.email, user.pass]);
+    const new_user = await connection.execute('INSERT INTO user (name, date, email, pass) VALUES (?,?,?,?)', [user.name, user.date, user.email, user.pass]);
+    console.log(new_user)
 };
 
 const login = async (email, pass) => {

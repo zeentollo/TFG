@@ -1,16 +1,20 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const port = 3000
 
 const app = express();
 
-const loginRouter = require('./routes/login');
-const registerRouter = require('./routes/register');
+app.use(cors());
+app.use(express.json());
+
+const loginRouter = require('./routes/login.js');
+const registerRouter = require('./routes/register.js');
 
 app.use(express.static('public'));
 
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
+app.use('/', loginRouter);
+app.use('/', registerRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 

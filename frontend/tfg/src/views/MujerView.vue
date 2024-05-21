@@ -8,7 +8,7 @@
     <section id="ropa">
       <div>
         <img src="@/assets/img/seleccionar-trajes-mujer.png">
-        <p>TRAJES</p>
+        <p>ZAPATOS</p>
       </div>
 
       <div>
