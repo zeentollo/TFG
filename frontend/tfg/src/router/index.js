@@ -35,6 +35,16 @@ const routes = [
     name: 'compra',
     component: () => import('../views/CompraView.vue')
   },
+  {
+    path: '/pago',
+    name: 'pago',
+    component: () => import('../views/PagoView.vue')
+  },
+  {
+    path: '/factura',
+    name: 'factura',
+    component: () => import('../views/FacturaView.vue')
+  },
 ]
 
 const router = createRouter({

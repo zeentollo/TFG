@@ -4,6 +4,7 @@
 
     <p id="texto_titulo">NO CUALQUIER HOMBRE VISTE</p>
     <p id="texto_titulo">MATTEO RICCI</p>
+    <router-link to="/seleccionar">Atrás</router-link>
 
     <section id="ropa">
       <div @click="seleccionarCategoria('trajes')">
@@ -78,7 +79,7 @@ export default {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 40px;
+    margin: 20px;
 
     img:hover{
       cursor: pointer;
