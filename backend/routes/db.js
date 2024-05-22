@@ -20,13 +20,7 @@ const login = async (email, pass) => {
     const [user] = await connection.execute('SELECT * FROM user WHERE email = ?', [email]);
     if (user.length !== 0) {
         correcto = await bcrypt.compare(pass, user[0].pass);
-        if (correcto) {
-            return user[0].id
-        } else {
-            return false;
-        }
-    }else{
-        return false;
+        return user;
     }
 };
 

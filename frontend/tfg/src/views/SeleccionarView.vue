@@ -2,7 +2,7 @@
   <section id="principal">
     <img id="img_principal" src="@/assets/img/principal.gif">
 
-    <p id="texto_titulo">HOLA @USUARIO</p>
+    <p id="texto_titulo">HOLA {{ userName.toUpperCase() }}</p>
     <p id="texto_titulo">CAMBIA TU ESTILO, SÉ DIFERENTE</p>
 
     <section id="seleccionar">
@@ -24,7 +24,13 @@
 
 </template>
 
-<script>
+<script setup>
+import { useStore } from 'vuex';
+import { computed } from 'vue';
+
+const store = useStore();
+
+const userName = computed(() => store.getters.user_name)
 
 </script>
 

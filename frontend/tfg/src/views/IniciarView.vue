@@ -4,19 +4,56 @@
     <div id="div_principal">
       <div id="div_arriba">
         <p id="eslogan">PARA COMENZAR, INICIA SESIÓN</p>
-        <router-link to="/register" id="pregunta">¿No tienes cuenta? Registrate</router-link>
+        <router-link to="/register" id="pregunta">¿No tienes cuenta? Regístrate</router-link>
       </div>
-      <form id="formulario" action="">
-        <input class="inputs" type="text" name="" id="" placeholder="Indique su correo electronico">
-        <input class="inputs" type="text" name="" id="" placeholder="Indique su contraseña">
-        <button id="boton">ACCEDER</button>
+      <form id="formulario" @submit.prevent="login">
+        <input class="inputs" v-model="email" type="email" placeholder="Indique su correo electrónico" required>
+        <input class="inputs" v-model="pass" type="password" placeholder="Indique su contraseña" required>
+        <button id="boton" type="submit">ACCEDER</button>
       </form>
     </div>
   </section>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
+const store = useStore()
+const email = ref("")
+const pass = ref("")
+const router = useRouter()
+
+const login = async () => {
+  const data = {
+    email: email.value,
+    pass: pass.value,
+  }
+
+  try {
+    const response = await axios.post("http://localhost:3000/login", data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    console.log(response.data)
+    if (response.status == 200) {
+      store.commit("set_user_name", response.data[0].name)
+      router.push("/seleccionar")
+    }
+  } catch (error) {
+    if (error.response) {
+      console.error('Error de respuesta del servidor:', error.response.data)
+    } else if (error.request) {
+      console.error('Error de solicitud:', error.request)
+    } else {
+      console.error('Error:', error.message)
+    }
+    console.error('Error de configuración:', error.config)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -25,14 +62,22 @@
   background-size: cover;
   background-position: center;
 }
-#img_principal{
+
+#img_principal {
   width: 100%;
   height: 90vh;
 }
 
+#div_principal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 100px;
+}
 
-
-#div_arriba{
+#div_arriba {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,13 +85,13 @@
   text-align: center;
   margin: 100px;
 
-  #eslogan{
+  #eslogan {
     margin: 30px;
     letter-spacing: 4px;
     font-size: 40px;
   }
 
-  #pregunta{
+  #pregunta {
     text-decoration: none;
     color: #8F8F8F;
     font-weight: bold;
@@ -55,14 +100,14 @@
   }
 }
 
-#formulario{
+#formulario {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
 
-  .inputs{
+  .inputs {
     width: 100vh;
     height: 50px;
     border-radius: 10px;
@@ -75,7 +120,7 @@
     margin: 40px;
   }
 
-  #boton{
+  #boton {
     margin: 100px;
     cursor: pointer;
     background-color: #454545;
@@ -86,7 +131,8 @@
     padding: 10px;
     letter-spacing: 4px;
   }
-  #boton:hover{
+
+  #boton:hover {
     color: rgb(218, 218, 255);
   }
 }

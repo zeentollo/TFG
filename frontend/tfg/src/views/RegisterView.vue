@@ -6,14 +6,14 @@
         <p id="eslogan">¡HOLA, ES UN GUSTO TENERTE POR AQUÍ!</p>
         <router-link to="/" id="pregunta">¿Ya tienes cuenta? Iniciar Sesión</router-link>
       </div>
-      <form id="formulario" @submit.prevent="register">
-        <input class="inputs" type="text" v-model="name" id="input_name" placeholder="Indique su nombre de usuario">
+      <form id="formulario" @submit.prevent="validate">
+        <input class="inputs" type="text" v-model="name" id="input_name" placeholder="Indique su nombre de usuario" required>
         <div id="div_date">
           <p id="texto">Indique su fecha de nacimiento</p>
-          <input class="inputs" type="date" v-model="date" id="input_date">
+          <input class="inputs" type="date" v-model="date" id="input_date" required>
         </div>
-        <input class="inputs" type="email" v-model="email" id="input_email" placeholder="Indique su correo electrónico">
-        <input class="inputs" type="password" v-model="pass" id="input_pass" placeholder="Indique su contraseña">
+        <input class="inputs" type="email" v-model="email" id="input_email" placeholder="Indique su correo electrónico" required>
+        <input class="inputs" type="password" v-model="pass" id="input_pass" placeholder="Indique su contraseña" required>
         <button id="boton">REGISTRATE</button>
       </form>
     </div>
@@ -59,6 +59,30 @@ const register = async () => {
     }
     console.error('Error de configuración:', error.config)
   }
+}
+
+
+const validate = () => {
+  const nameSimbolos = /^[a-zA-Z0-9]+$/;
+  const emailSimbolos = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passSimbolos = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  if (!nameSimbolos.test(name.value)) {
+    alert("El nombre de usuario solo puede contener letras y números.");
+    return;
+  }
+
+  if (!emailSimbolos.test(email.value)) {
+    alert("El correo electrónico no es válido.");
+    return;
+  }
+
+  if (!passSimbolos.test(pass.value)) {
+    alert("La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un símbolo.");
+    return;
+  }
+
+  register();
 }
 </script>
 
