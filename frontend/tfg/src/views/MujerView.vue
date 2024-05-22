@@ -6,19 +6,19 @@
     <p id="texto_titulo">MATTEO RICCI</p>
 
     <section id="ropa">
-      <div>
-        <img src="@/assets/img/seleccionar-trajes-mujer.png">
-        <p>ZAPATOS</p>
-      </div>
-
-      <div>
-        <img src="@/assets/img/seleccionar-vestidos.png">
+      <div @click="seleccionarCategoria('vestidos')">
+        <img src="@/assets/img/seleccionar-vestidos.webp">
         <p>VESTIDOS</p>
       </div>
 
-      <div>
+      <div @click="seleccionarCategoria('bolsos')">
         <img src="@/assets/img/seleccionar-bolsos.png">
         <p>BOLSOS</p>
+      </div>
+
+      <div @click="seleccionarCategoria('zapatos')">
+        <img src="@/assets/img/seleccionar-zapatos.png">
+        <p>ZAPATOS</p>
       </div>
     </section>
   </section>
@@ -26,7 +26,25 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
+export default {
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const seleccionarCategoria = (categoria) => {
+      store.dispatch('seleccionarGenero', 'Mujer');
+      store.dispatch('seleccionarCategoria', categoria);
+      router.push({ name: 'ropa' });
+    };
+
+    return {
+      seleccionarCategoria
+    };
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -42,6 +60,7 @@
 #img_principal{
   width: 100%;
   height: 90vh;
+  margin-bottom: 30px;
 }
 
 #texto_titulo{
@@ -68,9 +87,17 @@
       margin: 20px;
     }
 
+    img:hover{
+      cursor: pointer;
+    }
+
     p{
       font-size: 32px;
       letter-spacing: 4px;
+    }
+
+    p:hover{
+      cursor: pointer;
     }
   }
 }

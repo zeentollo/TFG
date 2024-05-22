@@ -1,15 +1,31 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    user_name: ""
+    generoSeleccionado: null,
+    categoriaSeleccionada: null,
+    nombreUsuario: ""
   },
   getters: {
-    user_name: (state) => state.user_name
+    nombreUsuario: (state) => state.nombreUsuario
   },
   mutations: {
-    set_user_name: (state, user_name) => {
-      state.user_name = user_name
+    esNombreUsuario: (state, nombreUsuario) => {
+      state.nombreUsuario = nombreUsuario;
+    },
+    seleccionarGenero: (state, genero) => {
+      state.generoSeleccionado = genero;
+    },
+    seleccionarCategoria(state, categoria) {
+      state.categoriaSeleccionada = categoria;
+    }
+  },
+  actions: {
+    seleccionarGenero({ commit }, genero) {
+      commit('seleccionarGenero', genero);
+    },
+    seleccionarCategoria({ commit }, categoria) {
+      commit('seleccionarCategoria', categoria);
     }
   }
-})
+});

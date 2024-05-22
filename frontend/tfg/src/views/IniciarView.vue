@@ -40,7 +40,7 @@ const login = async () => {
     })
     console.log(response.data)
     if (response.status == 200) {
-      store.commit("set_user_name", response.data[0].name)
+      store.commit("esNombreUsuario", response.data[0].name)
       router.push("/seleccionar")
     }
   } catch (error) {
@@ -74,7 +74,6 @@ const login = async () => {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 100px;
 }
 
 #div_arriba {

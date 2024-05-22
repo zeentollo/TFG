@@ -172,6 +172,7 @@ const validate = () => {
   letter-spacing: 4px;
   font-size: 32px;
   padding: 10px;
+  margin-bottom: 80px;
 }
 
 #boton:hover {
