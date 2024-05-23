@@ -32,7 +32,7 @@ const subcategoria = async (name) => {
 };
 
 const productos = async (subcategory) => {
-    const [productos] = await connection.execute('SELECT * FROM products WHERE subcategory = ?', [subcategory]);
+    const [productos] = await connection.execute('SELECT * FROM product WHERE subcategory = ?', [subcategory]);
     if (productos.length !== 0) {
         return productos;
     }

@@ -5,11 +5,13 @@ export default createStore({
     generoSeleccionado: null,
     categoriaSeleccionada: null,
     nombreUsuario: "",
-    productosId: []
+    productosId: [],
+    productosEnCarrito: []
   },
   getters: {
     nombreUsuario: (state) => state.nombreUsuario,
-    listaProductosId: (state) => state.productosId
+    listaProductosId: (state) => state.productosId,
+    listaProductosEnCarrito: (state) => state.productosEnCarrito
   },
   mutations: {
     esNombreUsuario: (state, nombreUsuario) => {
@@ -21,15 +23,14 @@ export default createStore({
     seleccionarCategoria: (state, categoria) => {
       state.categoriaSeleccionada = categoria;
     },
-    anadirProducto: (state, productosId) => {
-      state.productosId.push(productosId);
+    anadirProducto: (state, { producto, talla }) => {
+      state.productosEnCarrito.push({ producto, talla });
     },
-    eliminarProducto: (state, producto) => {
-      const posicion = state.productosId.indexOf(producto);
-      state.productosId.splice(posicion, 1);
+    eliminarProducto: (state, index) => {
+      state.productosEnCarrito.splice(index, 1);
     },
     vaciarCarrito: (state) => {
-      state.productosId = [];
+      state.productosEnCarrito = [];
     }
   },
   actions: {

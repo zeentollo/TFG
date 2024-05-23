@@ -6,7 +6,7 @@
         </div>
         <section id="info">
             <div id="div_principal">
-                <p class="text_info">IMPORTE TOTAL: 000€</p>
+                <p class="text_info">IMPORTE TOTAL: {{ total }} €</p>
                 <div id="div_info">
                     <p class="text_div">COMERCIO: MATTEO RICCI</p>
                     <p class="text_div">TERMINAL: 5675788978-RJ</p>
@@ -15,14 +15,37 @@
                 </div>
             </div>
         </section>
-        <button id="salir">SALIR</button>
+        <div v-for="(item, index) in productosEnCarrito" :key="index">
+            <div class="div_prenda">
+                <img :src="`http://localhost:3000/${item.producto.img}`" alt="Imagen Producto">
+                <div class="div_texto">
+                <h3>{{ item.producto.name }}</h3>
+                <p>Precio: {{ item.producto.price }} €</p>
+                <p>Talla: {{ item.talla }}</p>
+                </div>
+            </div>
+        </div>
+        <button id="salir" @click="salir()">SALIR</button>
     </section>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 const fechaActual = ref('')
+const store = useStore();
+const productosEnCarrito = computed(() => store.state.productosEnCarrito);
+const router = useRouter();
+
+const salir = () => {
+  router.push("/seleccionar");
+};
+
+const total = computed(() => {
+  return productosEnCarrito.value.reduce((sum, item) => sum + parseInt(item.producto.price), 0);
+});
 
 const ObtenerFechaActual = () => {
   const hoy = new Date()
@@ -51,6 +74,11 @@ onMounted(() => {
     margin: 50px;
     gap: 140vh;
 }
+
+.div_prenda{
+    margin: 40px;
+}
+
 #titulo {
     font-size: 40px;
     font-weight: bold;

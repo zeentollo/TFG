@@ -83,9 +83,10 @@ export default {
     
 
     img{
-      width: 300px;
+      width: 400px;
       height: 400px;
-      margin: 20px;
+      margin: 40px;
+      margin-top: 20px;
     }
 
     img:hover{

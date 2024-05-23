@@ -6,14 +6,14 @@
     <p id="texto_titulo">CAMBIA TU ESTILO, SÉ DIFERENTE</p>
 
     <section id="seleccionar">
-      <div id="div_hombre" @click="seleccionarGenero('Hombre')">
+      <div id="div_hombre" @click="seleccionarGenero('hombre')">
         <picture id="img_hombre">
           <img src="@/assets/img/seleccionar-hombre.jpg">
         </picture>
         <p id="texto_hombre">HOMBRE</p>
       </div>
 
-      <div id="div_mujer" @click="seleccionarGenero('Mujer')">
+      <div id="div_mujer" @click="seleccionarGenero('mujer')">
         <picture id="img_mujer">
           <img src="@/assets/img/seleccionar-mujer.jpg">
         </picture>
@@ -30,7 +30,6 @@ import { useRouter } from 'vue-router';
 
 const store = useStore();
 const router = useRouter();
-
 const nombreUsuario = computed(() => store.getters.nombreUsuario);
 
 const seleccionarGenero = (genero) => {

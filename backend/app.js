@@ -10,11 +10,15 @@ app.use(express.json());
 
 const loginRouter = require('./routes/login.js');
 const registerRouter = require('./routes/register.js');
+const productRouter = require('./routes/product.js');
+const subcategoryRouter = require('./routes/subcategory.js');
 
 app.use(express.static('public'));
 
 app.use('/', loginRouter);
 app.use('/', registerRouter);
+app.use('/', productRouter);
+app.use('/', subcategoryRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 

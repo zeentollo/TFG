@@ -17,20 +17,20 @@
             <div id="div_inputs">
                 <i id="iconos" class="fa-regular fa-credit-card"></i><p>Nº DE TARJETA</p>
             </div>
-            <input type="text" name="" id="input" placeholder="0000 0000 0000 0000" maxlength="16"><br>
+            <input v-model="numeroTarjeta" type="text" name="" id="input" placeholder="0000 0000 0000 0000" maxlength="16"><br>
             
             <div id="div_inputs">
                 <i id="iconos" class="fa-regular fa-calendar"></i><p>FECHA DE CADUCIDAD</p>
             </div>
-            <input type="date" name="" id="input"><br>
+            <input v-model="fechaCaducidad" type="date" name="" id="input"><br>
 
             <div id="div_inputs">
                 <i id="iconos" class="fa-solid fa-credit-card"></i><p>COD. DE SEGURIDAD</p>
             </div>
-            <input type="text" name="" id="input" placeholder="000" maxlength="3">
+            <input v-model="codigoSeguridad" type="text" name="" id="input" placeholder="000" maxlength="3">
 
             <div id="div_botones">
-                <button class="botones" id="pagar">PAGAR</button>
+                <button @click="validarPago" class="botones" id="pagar">PAGAR</button>
                 <button class="botones" id="cancelar">CANCELAR</button>
             </div>
 
@@ -40,7 +40,48 @@
 </template>
 
 <script setup>
+import Swal from 'sweetalert2';
 
+const validarPago = () => {
+  if (!numeroTarjeta || !fechaCaducidad || !codigoSeguridad) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Campos vacíos',
+      text: 'Por favor, completa todos los campos.'
+    });
+    return;
+  }
+  if (numeroTarjeta.length !== 16) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Datos erróneos',
+      text: 'El número de tarjeta debe contener 16 dígitos'
+    });
+    return;
+  }
+  const fechaActual = new Date();
+  const fechaIntroducida = new Date(fechaCaducidad);
+  if (fechaIntroducida <= fechaActual) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Datos erróneos',
+      text: 'La fecha de caducidad debe ser posterior a la actual'
+    });
+    return;
+  }
+  if (codigoSeguridad.length !== 3) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Datos erróneos',
+      text: 'El código de seguridad debe contener 3 dígitos'
+    });
+    return;
+  }
+}
+
+let numeroTarjeta = '';
+let fechaCaducidad = '';
+let codigoSeguridad = '';
 </script>
 
 <style scoped>
@@ -131,5 +172,3 @@
     color: #FFFFFF;
 }
 </style>
-
-  
