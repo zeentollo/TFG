@@ -45,10 +45,12 @@
 
 <style scoped>
 #principal {
+    background-image: url("@/assets/img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 60px;
 }
 
 #info{
@@ -57,6 +59,7 @@
     padding: 40px;
     padding-bottom: 140px;
     margin: 50px;
+    margin-top: 120px;
 }
 .text_info{
     font-weight: bold;
@@ -76,6 +79,7 @@
 #texto{
     margin-bottom: 40px;
     font-size: 48px;
+    margin-top: 100px;
 }
 
 #div_inputs{
@@ -84,6 +88,7 @@
 
 #input{
     margin-bottom: 60px;
+    margin-top: 30px;
     width: 100vh;
     height: 40px;
     border: 1px solid;
@@ -102,6 +107,7 @@
     align-items: center;
     justify-content: center;
     gap: 400px;
+    margin-bottom: 20px;
 }
 
 .botones{

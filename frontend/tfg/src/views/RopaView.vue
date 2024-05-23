@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <section id="principal">
     <h1>Ropa para {{ genero }} - {{ categoria }}</h1>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -14,5 +14,13 @@ const categoria = computed(() => store.state.categoriaSeleccionada);
 </script>
 
 <style scoped>
-
+#principal {
+  background-image: url("@/assets/img/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 </style>

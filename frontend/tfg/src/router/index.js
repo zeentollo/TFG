@@ -44,7 +44,7 @@ const routes = [
     path: '/factura',
     name: 'factura',
     component: () => import('../views/FacturaView.vue')
-  },
+  }
 ]
 
 const router = createRouter({
