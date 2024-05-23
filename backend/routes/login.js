@@ -5,9 +5,6 @@ const { login } = require('./db');
 
 routes.post('/login', async (req, res) => {
     const { email, pass } = req.body;
-    const user = await login(email, pass);
-    console.log(user)
-
     try {
         const user = await login(email, pass);
         console.log(user)

@@ -36,8 +36,8 @@ export default {
     const router = useRouter();
 
     const seleccionarCategoria = (categoria) => {
-      store.dispatch('seleccionarGenero', 'Hombre');
-      store.dispatch('seleccionarCategoria', categoria);
+      store.commit('seleccionarGenero', 'Hombre');
+      store.commit('seleccionarCategoria', categoria);
       router.push({ name: 'ropa' });
     };
 

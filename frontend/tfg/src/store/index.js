@@ -4,10 +4,12 @@ export default createStore({
   state: {
     generoSeleccionado: null,
     categoriaSeleccionada: null,
-    nombreUsuario: ""
+    nombreUsuario: "",
+    productosId: []
   },
   getters: {
-    nombreUsuario: (state) => state.nombreUsuario
+    nombreUsuario: (state) => state.nombreUsuario,
+    listaProductosId: (state) => state.productosId
   },
   mutations: {
     esNombreUsuario: (state, nombreUsuario) => {
@@ -16,16 +18,21 @@ export default createStore({
     seleccionarGenero: (state, genero) => {
       state.generoSeleccionado = genero;
     },
-    seleccionarCategoria(state, categoria) {
+    seleccionarCategoria: (state, categoria) => {
       state.categoriaSeleccionada = categoria;
+    },
+    anadirProducto: (state, productosId) => {
+      state.productosId.push(productosId);
+    },
+    eliminarProducto: (state, producto) => {
+      const posicion = state.productosId.indexOf(producto);
+      state.productosId.splice(posicion, 1);
+    },
+    vaciarCarrito: (state) => {
+      state.productosId = [];
     }
   },
   actions: {
-    seleccionarGenero({ commit }, genero) {
-      commit('seleccionarGenero', genero);
-    },
-    seleccionarCategoria({ commit }, categoria) {
-      commit('seleccionarCategoria', categoria);
-    }
+    
   }
 });

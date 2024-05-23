@@ -34,7 +34,7 @@ const router = useRouter();
 const nombreUsuario = computed(() => store.getters.nombreUsuario);
 
 const seleccionarGenero = (genero) => {
-  store.dispatch('seleccionarGenero', genero);
+  store.commit("seleccionarGenero", genero);
   router.push({ name: genero.toLowerCase() });
 };
 </script>

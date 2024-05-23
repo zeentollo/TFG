@@ -24,7 +24,31 @@ const login = async (email, pass) => {
     }
 };
 
+const subcategoria = async (name) => {
+    const [subcategoria] = await connection.execute('SELECT * FROM subcategory WHERE name = ?', [name]);
+    if (subcategoria.length !== 0) {
+        return subcategoria[0].id;
+    }
+};
+
+const productos = async (subcategory) => {
+    const [productos] = await connection.execute('SELECT * FROM products WHERE subcategory = ?', [subcategory]);
+    if (productos.length !== 0) {
+        return productos;
+    }
+};
+
+const producto = async (id) => {
+    const [producto] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
+    if (producto.length !== 0) {
+        return producto[0];
+    }
+};
+
 module.exports = {
     register,
-    login
+    login,
+    subcategoria,
+    productos,
+    producto,
 };
