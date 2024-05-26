@@ -6,12 +6,16 @@ export default createStore({
     categoriaSeleccionada: null,
     nombreUsuario: "",
     productosId: [],
-    productosEnCarrito: []
+    productosEnCarrito: [],
+    nombreId: "",
+    factura: ""
   },
   getters: {
     nombreUsuario: (state) => state.nombreUsuario,
     listaProductosId: (state) => state.productosId,
-    listaProductosEnCarrito: (state) => state.productosEnCarrito
+    listaProductosEnCarrito: (state) => state.productosEnCarrito,
+    nombreId: (state) => state.nombreId,
+    factura: (state) => state.factura
   },
   mutations: {
     esNombreUsuario: (state, nombreUsuario) => {
@@ -31,6 +35,12 @@ export default createStore({
     },
     vaciarCarrito: (state) => {
       state.productosEnCarrito = [];
+    },
+    esNombreId: (state, nombreId) => {
+      state.nombreId = nombreId;
+    },
+    esFactura: (state, id) => {
+      state.factura = id
     }
   },
   actions: {

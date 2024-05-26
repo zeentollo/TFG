@@ -7,7 +7,6 @@
             <div id="div_info">
                 <p class="text_div">COMERCIO: MATTEO RICCI</p>
                 <p class="text_div">TERMINAL: 5675788978-RJ</p>
-                <p class="text_div">N* PEDIDO: 0000000</p>
                 <p class="text_div">FECHA: 01/01/2000</p>
             </div>
         </section>
@@ -41,9 +40,21 @@
 
 <script setup>
 import Swal from 'sweetalert2';
+import { ref, computed } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
-const validarPago = () => {
-  if (!numeroTarjeta || !fechaCaducidad || !codigoSeguridad) {
+const numeroTarjeta = ref('')
+const fechaCaducidad = ref('')
+const codigoSeguridad = ref('')
+
+const store =  useStore()
+const router = useRouter()
+
+const validarPago = async () => {
+    
+  if (!numeroTarjeta.value || !fechaCaducidad.value || !codigoSeguridad.value) {
     Swal.fire({
       icon: 'error',
       title: 'Campos vacíos',
@@ -51,7 +62,8 @@ const validarPago = () => {
     });
     return;
   }
-  if (numeroTarjeta.length !== 16) {
+
+  if ((numeroTarjeta.value).length !== 16) {
     Swal.fire({
       icon: 'error',
       title: 'Datos erróneos',
@@ -59,9 +71,8 @@ const validarPago = () => {
     });
     return;
   }
-  const fechaActual = new Date();
-  const fechaIntroducida = new Date(fechaCaducidad);
-  if (fechaIntroducida <= fechaActual) {
+
+  if (new Date(fechaCaducidad.value) <= new Date()) {
     Swal.fire({
       icon: 'error',
       title: 'Datos erróneos',
@@ -69,7 +80,8 @@ const validarPago = () => {
     });
     return;
   }
-  if (codigoSeguridad.length !== 3) {
+
+  if ((codigoSeguridad.value).length !== 3) {
     Swal.fire({
       icon: 'error',
       title: 'Datos erróneos',
@@ -77,11 +89,31 @@ const validarPago = () => {
     });
     return;
   }
-}
 
-let numeroTarjeta = '';
-let fechaCaducidad = '';
-let codigoSeguridad = '';
+    const user = computed(() => store.getters.nombreId)
+    const productosEnCarrito = computed(() =>  store.getters.listaProductosEnCarrito)
+    const total = computed(() => {
+    return productosEnCarrito.value.reduce((sum, item) => sum + parseInt(item.producto.price), 0);
+    });
+    const productosId = []
+    productosEnCarrito.value.forEach(producto => {
+        productosId.push(producto.producto.id)
+    });
+
+
+    const crearFactura = await axios.post("http://localhost:3000/factura", {user: user.value, total: total.value, productos: productosId}, {
+        headers: {
+        'Content-Type': 'application/json',
+        },
+    })
+    store.commit("esFactura", crearFactura.data)
+    Swal.fire({
+        icon: 'success',
+        title: 'Pago correcto',
+        text: 'Se ha procesado tu pago correctamente'
+    });
+    router.push("/factura")
+}
 </script>
 
 <style scoped>

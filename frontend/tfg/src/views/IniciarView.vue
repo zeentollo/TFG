@@ -41,6 +41,7 @@ const login = async () => {
     console.log(response.data)
     if (response.status == 200) {
       store.commit("esNombreUsuario", response.data[0].name)
+      store.commit("esNombreId", response.data[0].id)
       router.push("/seleccionar")
     }
   } catch (error) {

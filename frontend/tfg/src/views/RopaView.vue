@@ -41,7 +41,7 @@
         <button @click="vaciarCarrito" class="vaciar_carrito">Vaciar carrito</button>
       </div>
     </div>
-    <router-link to="/factura" >Compra</router-link>
+    <router-link to="/compra" >Compra</router-link>
   </section>
 </template>
 

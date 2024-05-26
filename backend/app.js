@@ -12,6 +12,7 @@ const loginRouter = require('./routes/login.js');
 const registerRouter = require('./routes/register.js');
 const productRouter = require('./routes/product.js');
 const subcategoryRouter = require('./routes/subcategory.js');
+const facturaRouter = require('./routes/factura.js')
 
 app.use(express.static('public'));
 
@@ -19,6 +20,7 @@ app.use('/', loginRouter);
 app.use('/', registerRouter);
 app.use('/', productRouter);
 app.use('/', subcategoryRouter);
+app.use('/', facturaRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -45,10 +45,29 @@ const producto = async (id) => {
     }
 };
 
+const factura = async (user, products, total) =>{
+    const [crearFactura] = await connection.execute('INSERT INTO bill (total, user) VALUES (?,?)', [total, user])
+    const [verFactura] = await connection.execute('SELECT * FROM bill WHERE user = ?', [user])
+    console.log(factura)
+    const facturaId = factura[0].id
+    products.forEach(async (product) => {
+        await connection.execute('INSERT INTO bill_product (bill, product) VALUES (?,?)', [facturaId, product])
+    });
+    return facturaId
+}
+
+const verFactura = async (id) => {
+    const [factura] = await connection.execute('SELECT * FROM bill WHERE id = ?', [id])
+    const [productosFactura] = await connection.execute('SELECT * FROM bill_product WHERE bill = ?', [id])
+    return {factura: factura[0], productosFactura: productosFactura}
+}
+
 module.exports = {
     register,
     login,
     subcategoria,
     productos,
     producto,
+    factura,
+    verFactura
 };
