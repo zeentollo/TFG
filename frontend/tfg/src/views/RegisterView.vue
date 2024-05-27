@@ -24,6 +24,7 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router';
+import Swal from 'sweetalert2';
 
 const name = ref("")
 const date = ref("")
@@ -47,20 +48,44 @@ const register = async () => {
     })
     console.log(response)
     if (response.status == 200) {
+      Swal.fire(
+        '¡Bienvenido!',
+        'Usuario creado correctamente.',
+        'success'
+      );
       router.push("/")
     }
   } catch (error) {
     if (error.response) {
       console.error('Error de respuesta del servidor:', error.response.data)
+      Swal.fire(
+        '¡Error!',
+        'Ese usuario ya existe, revisa los campos introducidos.',
+        'error'
+      );
     } else if (error.request) {
       console.error('Error de solicitud:', error.request)
+      Swal.fire(
+        '¡Error!',
+        'Ha ocurrido un error, revisa los campos introducidos.',
+        'error'
+      );
     } else {
       console.error('Error:', error.message)
+      Swal.fire(
+        '¡Error!',
+        'Ha ocurrido un error, revisa los campos introducidos.',
+        'error'
+      );
     }
     console.error('Error de configuración:', error.config)
+    Swal.fire(
+        '¡Error!',
+        'Ese usuario ya existe, revisa los campos introducidos.',
+        'error'
+      );
   }
 }
-
 
 const validate = () => {
   const nameSimbolos = /^[a-zA-Z0-9]+$/;
@@ -68,17 +93,42 @@ const validate = () => {
   const passSimbolos = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   if (!nameSimbolos.test(name.value)) {
-    alert("El nombre de usuario solo puede contener letras y números.");
+    Swal.fire(
+        '¡Error!',
+        'El nombre de usuario solo puede contener letras y números.',
+        'error'
+      );
     return;
   }
 
   if (!emailSimbolos.test(email.value)) {
-    alert("El correo electrónico no es válido.");
+    Swal.fire(
+        '¡Error!',
+        'El correo electrónico no es válido.',
+        'error'
+      );
     return;
   }
 
   if (!passSimbolos.test(pass.value)) {
-    alert("La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un símbolo.");
+    Swal.fire(
+        '¡Error!',
+        'La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un símbolo.',
+        'error'
+      );
+    return;
+  }
+
+  const fechaNacimiento = new Date(date.value);
+  const minFecha = new Date('1900-01-01');
+  const maxFecha = new Date();
+
+  if (fechaNacimiento < minFecha || fechaNacimiento > maxFecha) {
+    Swal.fire(
+        '¡Error!',
+        'La fecha de nacimiento no es correcta.',
+        'error'
+      );
     return;
   }
 

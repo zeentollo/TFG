@@ -20,6 +20,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import Swal from 'sweetalert2'
 
 const store = useStore()
 const email = ref("")
@@ -42,17 +43,44 @@ const login = async () => {
     if (response.status == 200) {
       store.commit("esNombreUsuario", response.data[0].name)
       store.commit("esNombreId", response.data[0].id)
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "¡Has iniciado sesión correctamente!",
+        showConfirmButton: false,
+        timer: 2000
+      });
       router.push("/seleccionar")
     }
   } catch (error) {
     if (error.response) {
       console.error('Error de respuesta del servidor:', error.response.data)
+      Swal.fire(
+        '¡Error!',
+        'Error con el usuario, revisa los campos introducidos.',
+        'error'
+      );
     } else if (error.request) {
       console.error('Error de solicitud:', error.request)
+      Swal.fire(
+        '¡Error!',
+        'Error con el usuario, revisa los campos introducidos.',
+        'error'
+      );
     } else {
       console.error('Error:', error.message)
+      Swal.fire(
+        '¡Error!',
+        'Error con el usuario, revisa los campos introducidos.',
+        'error'
+      );
     }
     console.error('Error de configuración:', error.config)
+    Swal.fire(
+        '¡Error!',
+        'Error con el usuario, revisa los campos introducidos.',
+        'error'
+      );
   }
 }
 </script>
