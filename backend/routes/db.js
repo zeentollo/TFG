@@ -13,7 +13,6 @@ const connection = mysql.createPool({
 
 const register = async (user) => {
     const new_user = await connection.execute('INSERT INTO user (name, date, email, pass) VALUES (?,?,?,?)', [user.name, user.date, user.email, user.pass]);
-    console.log(new_user)
 };
 
 const login = async (email, pass) => {
@@ -46,12 +45,15 @@ const producto = async (id) => {
 };
 
 const factura = async (user, products, total) =>{
-    const [crearFactura] = await connection.execute('INSERT INTO bill (total, user) VALUES (?,?)', [total, user])
-    const [verFactura] = await connection.execute('SELECT * FROM bill WHERE user = ?', [user])
-    console.log(factura)
-    const facturaId = factura[0].id
+    const fechaHoy = Date.now();
+    const tiempoUnix = Math.floor(fechaHoy / 1000);
+
+    await connection.execute('INSERT INTO bill (total, user, date) VALUES (?,?,?)', [total, user, tiempoUnix])
+    const [verFactura] = await connection.execute('SELECT * FROM bill WHERE user = ? AND date = ?', [user, tiempoUnix])
+    const facturaId = verFactura[0].id
     products.forEach(async (product) => {
         await connection.execute('INSERT INTO bill_product (bill, product) VALUES (?,?)', [facturaId, product])
+        await connection.execute('UPDATE product SET stock = stock - 1 WHERE id = ?', [product])
     });
     return facturaId
 }
@@ -69,5 +71,5 @@ module.exports = {
     productos,
     producto,
     factura,
-    verFactura
+    verFactura,
 };

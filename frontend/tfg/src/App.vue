@@ -4,11 +4,8 @@
     <router-view/>
     <footer id="footer">
       <ul id="lista_footer">
-        <li>Términos y condiciones de compra</li>
-        <li>Términos y condiciones de MATTEO RICCI</li>
-        <li>Política de privacidad</li>
-        <li>Política de cookies</li>
-        <li>Configurar cookies</li>
+        <li>Términos y Condiciones de MATTEO RICCI</li>
+        <li>@Todos los Derechos Reservados a MATTEO RICCI</li>
       </ul>
     </footer>
   </section>
