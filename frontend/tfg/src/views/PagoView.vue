@@ -2,17 +2,17 @@
     <section id="principal">
         <section id="info">
             <p class="text_info">IMPORTE</p>
-            <p class="text_info">000 €</p>
+            <p class="text_info">{{ total }} €</p>
 
             <div id="div_info">
                 <p class="text_div">COMERCIO: MATTEO RICCI</p>
                 <p class="text_div">TERMINAL: 5675788978-RJ</p>
-                <p class="text_div">FECHA: 01/01/2000</p>
+                <p class="text_div">FECHA: {{ fechaActual }}</p>
             </div>
         </section>
 
         <section id="inputs">
-            <p id="texto">PAGAR CON TARJETA</p>
+            <p id="texto">PAGO CON TARJETA</p>
             <div id="div_inputs">
                 <i id="iconos" class="fa-regular fa-credit-card"></i><p>Nº DE TARJETA</p>
             </div>
@@ -30,7 +30,7 @@
 
             <div id="div_botones">
                 <button @click="validarPago" class="botones" id="pagar">PAGAR</button>
-                <button class="botones" id="cancelar">CANCELAR</button>
+                <button @click="cancelar" class="botones" id="cancelar">CANCELAR</button>
             </div>
 
         </section>
@@ -40,7 +40,7 @@
 
 <script setup>
 import Swal from 'sweetalert2';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
@@ -51,6 +51,24 @@ const codigoSeguridad = ref('')
 
 const store =  useStore()
 const router = useRouter()
+
+const productosEnCarrito = computed(() => store.state.productosEnCarrito);
+const total = computed(() => {
+  return productosEnCarrito.value.reduce((sum, item) => sum + parseInt(item.producto.price), 0);
+});
+
+const fechaActual = ref('')
+const ObtenerFechaActual = () => {
+  const hoy = new Date()
+  const dia = String(hoy.getDate()).padStart(2, '0')
+  const mes = String(hoy.getMonth() + 1).padStart(2, '0')
+  const ano = hoy.getFullYear()
+  return `${dia}/${mes}/${ano}`
+}
+
+onMounted(() => {
+  fechaActual.value = ObtenerFechaActual()
+})
 
 const validarPago = async () => {
     
@@ -113,6 +131,10 @@ const validarPago = async () => {
         text: 'Se ha procesado tu pago correctamente'
     });
     router.push("/factura")
+}
+
+const cancelar = () => {
+    router.push("/compra")
 }
 </script>
 
@@ -192,6 +214,7 @@ const validarPago = async () => {
     letter-spacing: 4px;
     font-size: 22px;
     font-weight: bold;
+    margin-bottom: 50px;
 }
 
 #pagar{
@@ -199,8 +222,19 @@ const validarPago = async () => {
     color: #FFFFFF;
 }
 
+#pagar:hover{
+    background-color: #39B8FF;
+    color: #92ffa8;
+    cursor: pointer;
+}
+
 #cancelar{
     background-color: #636363;
     color: #FFFFFF;
+}
+
+#cancelar:hover{
+    color: #ff7171;
+    cursor: pointer;
 }
 </style>

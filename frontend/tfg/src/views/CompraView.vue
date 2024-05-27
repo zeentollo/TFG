@@ -5,6 +5,10 @@
     </div>
     <div v-else>
       <h1 id="titulo">TU COMPRA EN MATTEO RICCI</h1>
+      <div id="div_atras">
+        <router-link to="/ropa" id="atras">Atrás</router-link>
+      </div>
+
       <div v-for="(item, index) in productosEnCarrito" :key="index" class="producto_en_carrito">
         <img :src="`http://localhost:3000/${item.producto.img}`" alt="Imagen Producto">
         <div class="div_texto">
@@ -74,6 +78,21 @@ const confirmarEliminar = (index) => {
 #titulo {
   font-size: 48px;
   margin: 40px;
+}
+
+#div_atras{
+  align-items: center;
+  text-align: center;
+}
+
+#atras{
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+}
+
+#atras:hover{
+  color: rgb(111, 0, 0);
 }
 
 #div_vacio{

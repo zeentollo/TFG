@@ -3,8 +3,17 @@
     <div id="img_principal" v-if="genero === 'Hombre'">
       <img id="img_principal" src="@/assets/img/hombre.jpg">
     </div>
+
     <div id="img_principal" v-else-if="genero === 'Mujer'">
       <img id="img_principal" src="@/assets/img/mujer.webp">
+    </div>
+
+    <div id="div_atras" v-if="genero === 'Hombre'">
+      <router-link to="/hombre" id="atras">Atrás</router-link>
+    </div>
+
+    <div id="div_atras" v-else-if="genero === 'Mujer'">
+      <router-link to="/mujer" id="atras">Atrás</router-link>
     </div>
 
     <div class="productos" v-if="productos && productos.length">
@@ -21,6 +30,7 @@
         <button class="boton_anadir" @click="anadirAlCarrito(producto, tallas[index])">Añadir al carrito</button>
       </div>
     </div>
+
     <div v-else>
       <p>No hay productos disponibles.</p>
     </div>
@@ -164,6 +174,21 @@ const comprar = () => {
 
 #principal {
   background-color: #f0f0f0;
+}
+
+#div_atras{
+  align-items: center;
+  text-align: center;
+}
+
+#atras{
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+}
+
+#atras:hover{
+  color: rgb(111, 0, 0);
 }
 
 #img_principal {

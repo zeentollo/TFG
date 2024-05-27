@@ -48,7 +48,7 @@ const login = async () => {
         icon: "success",
         title: "¡Has iniciado sesión correctamente!",
         showConfirmButton: false,
-        timer: 2000
+        timer: 1500
       });
       router.push("/seleccionar")
     }

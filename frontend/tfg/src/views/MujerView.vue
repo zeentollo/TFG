@@ -4,7 +4,9 @@
 
     <p id="texto_titulo">NO CUALQUIER MUJER VISTE</p>
     <p id="texto_titulo">MATTEO RICCI</p>
-    <router-link to="/seleccionar">Atrás</router-link>
+    <div id="div_atras">
+      <router-link to="/seleccionar" id="atras">Atrás</router-link>
+    </div>
 
     <section id="ropa">
       <div @click="seleccionarCategoria('vestidos')">
@@ -58,10 +60,20 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-#img_principal{
-  width: 100%;
-  height: 90vh;
-  margin-bottom: 30px;
+
+#div_atras{
+  align-items: center;
+  text-align: center;
+}
+
+#atras{
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+}
+
+#atras:hover{
+  color: rgb(111, 0, 0);
 }
 
 #texto_titulo{
