@@ -165,7 +165,7 @@ const validate = () => {
 }
 
 #eslogan {
-  margin: 10px;
+  margin: 40px;
   letter-spacing: 4px;
   font-size: 40px;
 }
@@ -187,7 +187,7 @@ const validate = () => {
 }
 
 #div_date {
-  margin: 20px 0;
+  margin: 10px 0;
 
   #texto {
     text-align: left;
@@ -214,7 +214,7 @@ const validate = () => {
 }
 
 #boton {
-  margin: 40px;
+  margin: 80px;
   cursor: pointer;
   background-color: #454545;
   color: white;

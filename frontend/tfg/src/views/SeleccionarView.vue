@@ -65,6 +65,7 @@ const seleccionarGenero = (genero) => {
   font-size: 48px;
   margin: 10px;
   letter-spacing: 6px;
+  margin-top: 40px;
 }
 #div_hombre, #div_mujer {
   width: 100%;

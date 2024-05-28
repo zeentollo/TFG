@@ -10,7 +10,7 @@
 
     <section id="ropa">
       <div @click="seleccionarCategoria('vestidos')">
-        <img src="@/assets/img/seleccionar-vestidos.webp">
+        <img src="@/assets/img/seleccionar-vestidos.png">
         <p>VESTIDOS</p>
       </div>
 
@@ -59,6 +59,12 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+#img_principal{
+  width: 100%;
+  height: 90vh;
+  margin-bottom: 30px;
 }
 
 #div_atras{

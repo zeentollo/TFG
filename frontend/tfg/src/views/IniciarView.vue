@@ -39,10 +39,12 @@ const login = async () => {
         'Content-Type': 'application/json',
       },
     })
-    console.log(response.data)
+    const usuario = response.data[0]
     if (response.status == 200) {
-      store.commit("esNombreUsuario", response.data[0].name)
-      store.commit("esNombreId", response.data[0].id)
+      store.commit("esNombreUsuario", usuario[0].name)
+      store.commit("esNombreId", usuario[0].id)
+      localStorage.setItem("token", response.data[1])
+
       Swal.fire({
         position: "top",
         icon: "success",
@@ -114,7 +116,7 @@ const login = async () => {
   margin: 100px;
 
   #eslogan {
-    margin: 30px;
+    margin: 50px;
     letter-spacing: 4px;
     font-size: 40px;
   }

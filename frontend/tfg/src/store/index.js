@@ -8,14 +8,16 @@ export default createStore({
     productosId: [],
     productosEnCarrito: [],
     nombreId: "",
-    factura: ""
+    factura: "",
+    token: ""
   },
   getters: {
     nombreUsuario: (state) => state.nombreUsuario,
     listaProductosId: (state) => state.productosId,
     listaProductosEnCarrito: (state) => state.productosEnCarrito,
     nombreId: (state) => state.nombreId,
-    factura: (state) => state.factura
+    factura: (state) => state.factura,
+    token: (state) => state.token
   },
   mutations: {
     esNombreUsuario: (state, nombreUsuario) => {
