@@ -53,6 +53,7 @@ const store =  useStore()
 const router = useRouter()
 
 const productosEnCarrito = computed(() => store.state.productosEnCarrito);
+
 const total = computed(() => {
   return productosEnCarrito.value.reduce((sum, item) => sum + parseInt(item.producto.price), 0);
 });
@@ -71,7 +72,6 @@ onMounted(() => {
 })
 
 const validarPago = async () => {
-    
   if (!numeroTarjeta.value || !fechaCaducidad.value || !codigoSeguridad.value) {
     Swal.fire({
       icon: 'error',
@@ -81,11 +81,12 @@ const validarPago = async () => {
     return;
   }
 
-  if ((numeroTarjeta.value).length !== 16) {
+  const tarjetaValida = /^\d{16}$/;
+  if (!tarjetaValida.test(numeroTarjeta.value)) {
     Swal.fire({
       icon: 'error',
       title: 'Datos erróneos',
-      text: 'El número de tarjeta debe contener 16 dígitos'
+      text: 'El número de tarjeta debe contener 16 dígitos numéricos'
     });
     return;
   }
@@ -99,39 +100,40 @@ const validarPago = async () => {
     return;
   }
 
-  if ((codigoSeguridad.value).length !== 3) {
+  const codigoValido = /^\d{3}$/;
+  if (!codigoValido.test(codigoSeguridad.value)) {
     Swal.fire({
       icon: 'error',
       title: 'Datos erróneos',
-      text: 'El código de seguridad debe contener 3 dígitos'
+      text: 'El código de seguridad debe contener 3 dígitos numéricos'
     });
     return;
   }
 
-    const user = computed(() => store.getters.nombreId)
-    const productosEnCarrito = computed(() =>  store.getters.listaProductosEnCarrito)
-    const total = computed(() => {
+  const user = computed(() => store.getters.nombreId)
+  const productosEnCarrito = computed(() =>  store.getters.listaProductosEnCarrito)
+  const total = computed(() => {
     return productosEnCarrito.value.reduce((sum, item) => sum + parseInt(item.producto.price), 0);
-    });
-    const productosId = []
-    productosEnCarrito.value.forEach(producto => {
-        productosId.push(producto.producto.id)
-    });
+  });
+  const productosId = []
+  productosEnCarrito.value.forEach(producto => {
+    productosId.push(producto.producto.id)
+  });
 
-
-    const crearFactura = await axios.post("http://localhost:3000/factura", {user: user.value, total: total.value, productos: productosId}, {
-        headers: {
-        'Content-Type': 'application/json',
-        },
-    })
-    store.commit("esFactura", crearFactura.data)
-    Swal.fire({
-        icon: 'success',
-        title: 'Pago correcto',
-        text: 'Se ha procesado tu pago correctamente'
-    });
-    router.push("/factura")
+  const crearFactura = await axios.post("http://localhost:3000/factura", {user: user.value, total: total.value, productos: productosId}, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  store.commit("esFactura", crearFactura.data)
+  Swal.fire({
+    icon: 'success',
+    title: 'Pago correcto',
+    text: 'Se ha procesado tu pago correctamente'
+  });
+  router.push("/factura")
 }
+
 
 const cancelar = () => {
     router.push("/compra")

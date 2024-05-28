@@ -3,6 +3,8 @@ const routes = express.Router();
 const bcrypt = require('bcryptjs');
 const { register } = require('./db');
 
+// RUTA PARA CONFIGURAR EL REGISTRO DE NUEVOS USUARIOS
+
 routes.post('/register', async (req, res) => {
     const { name, date, email, pass } = req.body;
 

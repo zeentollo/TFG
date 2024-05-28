@@ -2,6 +2,8 @@ const express = require('express');
 const routes = express.Router();
 const { subcategoria } = require('./db');
 
+// CON ESTA RUTA SABEMOS QUE SUBCATEGORIA HA SELECCIONADO EL USUARIO Y ASI SE LA PONEMOS EN EL FRONT /ROPA
+
 routes.post('/subcategoria', async (req, res) => {
     const { id } = req.body;
 

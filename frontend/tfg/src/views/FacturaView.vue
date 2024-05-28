@@ -17,7 +17,7 @@
         </section>
         <div v-for="(item, index) in productosEnCarrito" :key="index">
             <div class="div_prenda">
-                <img :src="`http://localhost:3000/${item.producto.img}`" alt="Imagen Producto">
+                <img class="prenda_img" :src="`http://localhost:3000/${item.producto.img}`" alt="Imagen Producto">
                 <div class="div_texto">
                 <h3>{{ item.producto.name }}</h3>
                 <p>Precio: {{ item.producto.price }} €</p>
@@ -77,6 +77,10 @@ onMounted(() => {
 
 .div_prenda{
     margin: 40px;
+}
+
+.prenda_img{
+    width: 50vh;
 }
 
 #titulo {

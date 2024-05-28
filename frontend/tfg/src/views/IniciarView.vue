@@ -39,7 +39,9 @@ const login = async () => {
         'Content-Type': 'application/json',
       },
     })
+
     const usuario = response.data[0]
+
     if (response.status == 200) {
       store.commit("esNombreUsuario", usuario[0].name)
       store.commit("esNombreId", usuario[0].id)
@@ -54,6 +56,7 @@ const login = async () => {
       });
       router.push("/seleccionar")
     }
+
   } catch (error) {
     if (error.response) {
       console.error('Error de respuesta del servidor:', error.response.data)
@@ -62,6 +65,7 @@ const login = async () => {
         'Error con el usuario, revisa los campos introducidos.',
         'error'
       );
+
     } else if (error.request) {
       console.error('Error de solicitud:', error.request)
       Swal.fire(
@@ -69,6 +73,7 @@ const login = async () => {
         'Error con el usuario, revisa los campos introducidos.',
         'error'
       );
+
     } else {
       console.error('Error:', error.message)
       Swal.fire(
@@ -77,6 +82,7 @@ const login = async () => {
         'error'
       );
     }
+    
     console.error('Error de configuración:', error.config)
     Swal.fire(
         '¡Error!',

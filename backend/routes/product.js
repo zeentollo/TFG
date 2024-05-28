@@ -2,6 +2,8 @@ const express = require('express');
 const routes = express.Router();
 const { producto, productos } = require('./db');
 
+// RUTAS PARA PODER PONER LOS PRODUCTOS EN MI WEB SEGUN LO QUE SELECCIONE EL USUARIO
+
 routes.post('/producto', async (req, res) => {
     const { id } = req.body;
 

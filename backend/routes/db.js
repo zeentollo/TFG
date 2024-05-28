@@ -11,9 +11,13 @@ const connection = mysql.createPool({
     port: 3306
 });
 
+// CONSULTA PARA REGISTRAR AL USUARIO, SI YA EXISTE TIRA UN ERROR YA QUE EN LA DB ESTA PUESTO UNIQUE
+
 const register = async (user) => {
     const new_user = await connection.execute('INSERT INTO user (name, date, email, pass) VALUES (?,?,?,?)', [user.name, user.date, user.email, user.pass]);
 };
+
+// CONSULTA PARA LOGGEAR AL USER
 
 const login = async (email, pass) => {
     const [user] = await connection.execute('SELECT * FROM user WHERE email = ?', [email]);
@@ -23,12 +27,16 @@ const login = async (email, pass) => {
     }
 };
 
+// CONSULTA PARA SABER QUE SUBCATEGORIA HA SELECCIONADO EL USUARIO Y ASI PONER LOS PRODUCTOS EN LA WEB
+
 const subcategoria = async (name) => {
     const [subcategoria] = await connection.execute('SELECT * FROM subcategory WHERE name = ?', [name]);
     if (subcategoria.length !== 0) {
         return subcategoria[0].id;
     }
 };
+
+// CONSULTA PARA PONER LOS PRODUCTOS EN LA WEB
 
 const productos = async (subcategory) => {
     const [productos] = await connection.execute('SELECT * FROM product WHERE subcategory = ?', [subcategory]);
@@ -43,6 +51,9 @@ const producto = async (id) => {
         return producto[0];
     }
 };
+
+
+// CONSULTA PARA CREAR Y VER LAS FACTURAS DEL USUARIO Y RESTAR EL STOCK DE LOS PRODUCTOS
 
 const factura = async (user, products, total) =>{
     const fechaHoy = Date.now();

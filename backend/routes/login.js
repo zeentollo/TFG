@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const { login } = require('./db');
 const { crearToken } = require('./jwt')
 
+// RUTA PARA PODER LOGGEARTE EN EL FRONT Y ADJUDICARTE UN TOKEN VALIDO
+
 routes.post('/login', async (req, res) => {
     const { email, pass } = req.body;
     

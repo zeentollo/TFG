@@ -2,6 +2,7 @@ const express = require('express');
 const routes = express.Router();
 const { factura, verFactura } = require('./db');
 
+// RUTA PARA ENLAZAR CON EL FRONT Y CREAR LA FACTURA
 
 routes.post('/factura', async (req, res) => {
     const { user, total, productos } = req.body;

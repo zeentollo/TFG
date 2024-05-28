@@ -68,6 +68,8 @@ const router = createRouter({
   routes
 })
 
+// CON ESTO HACEMOS QUE SI EL USER NO TIENE TOKEN LE MUEVE AL LOGGIN
+
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
   if (to.matched.some(record => record.meta.requiresAuth)) {
