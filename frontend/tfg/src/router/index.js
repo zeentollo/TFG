@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import { useStore } from 'vuex';
 
 const routes = [
   {
@@ -69,21 +70,25 @@ const router = createRouter({
   routes
 })
 
-// CON ESTO HACEMOS QUE SI EL USER NO TIENE TOKEN O SI NOMBREID ESTA VACIO, LE MUEVE AL INICIO
-
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('token');
-  const nombreId = localStorage.getItem('nombreId');
-
+  
+  const store = useStore();
+  
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!token || !nombreId) {
+    try {
+      await store.dispatch('loadUser');
+      if (!token || !store.getters.nombreUsuario) {
+        next('/');
+      } else {
+        next();
+      }
+    } catch (error) {
       next('/');
-    } else {
-      next();
     }
   } else {
     next();
   }
 });
 
-export default router
+export default router;
