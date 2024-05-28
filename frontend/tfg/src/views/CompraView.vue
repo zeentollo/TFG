@@ -20,6 +20,7 @@
       </div>
       <div id="div_confirmar">
         <button id="boton_confirmar" @click="confirmarCompra()">CONFIRMAR COMPRA</button>
+        
       </div>
     </div>
   </section>
