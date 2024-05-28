@@ -41,7 +41,7 @@ const register = async () => {
   }
 
   try {
-    const response = await axios.post("https://tfg-backend-eh04.onrender.com:3000/register", data, {
+    const response = await axios.post("https://tfg-backend-nlzs.onrender.com:3000/register", data, {
       headers: {
         'Content-Type': 'application/json',
       },

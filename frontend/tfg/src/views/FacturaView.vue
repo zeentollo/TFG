@@ -17,7 +17,7 @@
         </section>
         <div v-for="(item, index) in productosEnCarrito" :key="index">
             <div class="div_prenda">
-                <img class="prenda_img" :src="`https://tfg-backend-eh04.onrender.com:3000/${item.producto.img}`" alt="Imagen Producto">
+                <img class="prenda_img" :src="`https://tfg-backend-nlzs.onrender.com:3000/${item.producto.img}`" alt="Imagen Producto">
                 <div class="div_texto">
                     <h3>{{ item.producto.name }}</h3>
                     <p>Precio: {{ item.producto.price }} €</p>

@@ -77,7 +77,7 @@ const productos = ref([]);
 const tallas = ref([]);
 
 const obtenerProductos = async () => {
-  const responseCategoria = await axios.post("https://tfg-backend-eh04.onrender.com:3000/subcategoria", { id: categoria.value }, {
+  const responseCategoria = await axios.post("https://tfg-backend-nlzs.onrender.com:3000/subcategoria", { id: categoria.value }, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -85,7 +85,7 @@ const obtenerProductos = async () => {
   if (responseCategoria.status === 200) {
     categoriaId.value = responseCategoria.data;
   }
-  const responseProductos = await axios.post("https://tfg-backend-eh04.onrender.com:3000/productos", { subcategory: categoriaId.value }, {
+  const responseProductos = await axios.post("https://https://tfg-backend-nlzs.onrender.com:3000/productos", { subcategory: categoriaId.value }, {
     headers: {
       'Content-Type': 'application/json',
     },
