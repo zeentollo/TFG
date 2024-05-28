@@ -16,7 +16,8 @@ const routes = [
     name: 'seleccionar',
     component: () => import('../views/SeleccionarView.vue'),
     meta: { requiresAuth: true }
-  },{
+  },
+  {
     path: '/hombre',
     name: 'hombre',
     component: () => import('../views/HombreView.vue'),
@@ -68,12 +69,14 @@ const router = createRouter({
   routes
 })
 
-// CON ESTO HACEMOS QUE SI EL USER NO TIENE TOKEN LE MUEVE AL LOGGIN
+// CON ESTO HACEMOS QUE SI EL USER NO TIENE TOKEN O SI NOMBREID ESTA VACIO, LE MUEVE AL INICIO
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
+  const nombreId = localStorage.getItem('nombreId');
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!token) {
+    if (!token || !nombreId) {
       next('/');
     } else {
       next();

@@ -10,7 +10,7 @@
                 <div id="div_info">
                     <p class="text_div">COMERCIO: MATTEO RICCI</p>
                     <p class="text_div">TERMINAL: 5675788978-RJ</p>
-                    <p class="text_div">Nº PEDIDO: 0000000</p>
+                    <p class="text_div">Nº PEDIDO: {{ numeroPedido }}</p>
                     <p class="text_div">FECHA: {{ fechaActual }}</p>
                 </div>
             </div>
@@ -19,9 +19,9 @@
             <div class="div_prenda">
                 <img class="prenda_img" :src="`http://localhost:3000/${item.producto.img}`" alt="Imagen Producto">
                 <div class="div_texto">
-                <h3>{{ item.producto.name }}</h3>
-                <p>Precio: {{ item.producto.price }} €</p>
-                <p>Talla: {{ item.talla }}</p>
+                    <h3>{{ item.producto.name }}</h3>
+                    <p>Precio: {{ item.producto.price }} €</p>
+                    <p>Talla: {{ item.talla }}</p>
                 </div>
             </div>
         </div>
@@ -35,6 +35,7 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
 const fechaActual = ref('')
+const numeroPedido = ref('')
 const store = useStore();
 const productosEnCarrito = computed(() => store.state.productosEnCarrito);
 const router = useRouter();
@@ -55,8 +56,13 @@ const ObtenerFechaActual = () => {
   return `${dia}/${mes}/${ano}`
 }
 
+const ObtenerTiempoUnix = () => {
+  return Math.floor(Date.now() / 1000).toString();
+}
+
 onMounted(() => {
   fechaActual.value = ObtenerFechaActual()
+  numeroPedido.value = ObtenerTiempoUnix()
 })
 </script>
 
