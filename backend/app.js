@@ -31,8 +31,6 @@ app.use((err, req, res, next) => {
 
 app.listen(port);
 
-app.listen(port, () => {
-    console.log(`Servidor en marcha en la ruta: https://tfg-backend-1ivq.onrender.com:${port}`);
-});
+console.log(`Servidor ON en el puerto: ${port}`);
 
 module.exports = app;
