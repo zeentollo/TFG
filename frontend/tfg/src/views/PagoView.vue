@@ -120,7 +120,7 @@ const validarPago = async () => {
     productosId.push(producto.producto.id)
   });
 
-  const crearFactura = await axios.post("http://localhost:3000/factura", {user: user.value, total: total.value, productos: productosId}, {
+  const crearFactura = await axios.post("https://tfg-backend-1ivq.onrender.com:3000/factura", {user: user.value, total: total.value, productos: productosId}, {
     headers: {
       'Content-Type': 'application/json',
     },
