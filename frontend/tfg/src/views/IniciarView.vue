@@ -34,7 +34,7 @@ const login = async () => {
   }
 
   try {
-    const response = await axios.post("https://localhost:3000/login", data, {
+    const response = await axios.post("http://localhost:3000/login", data, {
       headers: {
         'Content-Type': 'application/json',
       },
