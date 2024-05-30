@@ -193,7 +193,7 @@ const login = async () => {
   #formulario {
     .inputs {
       width: 80vw;
-      font-size: 16px;
+      font-size: 12px;
       margin: 10px;
     }
 

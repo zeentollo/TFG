@@ -15,6 +15,8 @@
     <div id="div_atras" v-else-if="genero === 'Mujer'">
       <router-link to="/mujer" id="atras">Atrás</router-link>
     </div>
+    <p id="texto_icono_carrito">Pulsa en el icono para <br> ver tu carrito</p>
+    <i id="icono_carrito" @click="verCarrito()" class="fa-solid fa-cart-shopping"></i>
 
     <div class="productos" v-if="productos && productos.length">
       <div v-for="(producto, index) in productos" :key="producto.id" class="producto">
@@ -142,6 +144,10 @@ const vaciarCarrito = () => {
   });
 };
 
+const verCarrito = () => {
+  mostrarCarrito.value = true;
+};
+
 const cerrarCarrito = () => {
   mostrarCarrito.value = false;
 };
@@ -196,6 +202,22 @@ const comprar = () => {
 
 #atras:hover{
   color: rgb(111, 0, 0);
+}
+
+#icono_carrito{
+  font-size: 30px;
+  margin-left: 120px;
+}
+
+#icono_carrito:hover{
+  cursor: pointer;
+  color: rgb(0, 0, 97);
+}
+
+#texto_icono_carrito{
+  font-size: 22px;
+  margin: 20px;
+  margin-left: 60px;
 }
 
 #img_principal {
@@ -291,6 +313,7 @@ const comprar = () => {
   font-weight: bold;
   font-size: 24px;
   margin-bottom: 5px;
+  width: 95%;
 }
 
 .producto_precio {
@@ -371,7 +394,15 @@ const comprar = () => {
     width: 95%;
   }
   #cerrar_carrito{
-  color: rgb(182, 0, 0);
-}
+    color: rgb(182, 0, 0);
+  }
+  #icono_carrito{
+    font-size: 30px;
+    margin-left: 20px;
+  }
+  #texto_icono_carrito{
+    font-size: 10px;
+    margin: 8px;
+  }
 }
 </style>

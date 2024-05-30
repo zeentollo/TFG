@@ -249,7 +249,7 @@ const validate = () => {
   #formulario {
     .inputs {
       width: 80vw;
-      font-size: 16px;
+      font-size: 12px;
       margin: 10px;
     }
 
@@ -264,12 +264,12 @@ const validate = () => {
     #texto {
       margin-left: 14px;
       margin-bottom: 5px;
-      font-size: 14px;
+      font-size: 12px;
     }
 
     #input_date {
       width: 80vw;
-      font-size: 16px;
+      font-size: 12px;
     }
   }
 }
