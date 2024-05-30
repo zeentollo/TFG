@@ -115,7 +115,9 @@ const seleccionarGenero = (genero) => {
     picture {
       img {
         max-width: 300px;
-        max-height: 350px;
+        max-height: 400px;
+        padding: 10px;
+        margin: 25px;
       }
     }
     p {
