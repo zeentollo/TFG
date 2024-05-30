@@ -161,4 +161,24 @@ const confirmarEliminar = (index) => {
   color: rgb(216, 255, 216);
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  #titulo {
+    font-size: 26px;
+    text-align: center;
+  }
+  .producto_en_carrito{
+    width: 90%;
+    height: auto;
+  }
+  .producto_en_carrito img {
+    width: 85%;
+    height: 50vh;
+  }
+  #boton_confirmar {
+    width: 30vh;
+    height: 80px;
+    font-size: 22px;
+  }
+}
 </style>

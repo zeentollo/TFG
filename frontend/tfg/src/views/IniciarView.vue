@@ -172,4 +172,36 @@ const login = async () => {
     color: rgb(218, 218, 255);
   }
 }
+
+@media (max-width: 768px) {
+  #img_principal{
+    height: 50vh;
+  }
+  #div_arriba {
+    margin: 20px;
+
+    #eslogan {
+      margin: 20px;
+      font-size: 24px;
+    }
+
+    #pregunta {
+      font-size: 18px;
+    }
+  }
+
+  #formulario {
+    .inputs {
+      width: 80vw;
+      font-size: 16px;
+      margin: 10px;
+    }
+
+    #boton {
+      margin: 20px;
+      font-size: 18px;
+      padding: 10px;
+    }
+  }
+}
 </style>

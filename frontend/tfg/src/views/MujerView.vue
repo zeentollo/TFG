@@ -121,5 +121,30 @@ export default {
     }
   }
 }
+@media screen and (max-width: 768px) {
+  #img_principal{
+    width: 100%;
+    height: 50vh;
+  }
+  #texto_titulo {
+    font-size: 26px;
+    text-align: center;
+  }
+  #ropa{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    
+    div{
+      width: 80%;
+      margin: 30px;
+
+      img{
+        width: 60%;
+        height: 20vh;
+      }
+    }
+  }
+}
 
 </style>

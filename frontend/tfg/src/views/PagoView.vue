@@ -239,4 +239,84 @@ const cancelar = () => {
     color: #ff7171;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  #principal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  #info{
+    font-size: 22px;
+    padding: 10px;
+    margin: 30px;
+  }
+  #titulo {
+    font-size: 26px;
+    text-align: center;
+  }
+  .producto_en_carrito{
+    width: 90%;
+    height: auto;
+  }
+  .producto_en_carrito img {
+    width: 85%;
+    height: 50vh;
+  }
+  #boton_confirmar {
+    width: 30vh;
+    height: 80px;
+    font-size: 22px;
+  }
+
+  #texto{
+      margin-bottom: 20px;
+      font-size: 32px;
+      margin-top: 40px;
+  }
+
+  #div_inputs{
+      display: flex;
+      font-size: 24px;
+  }
+
+  #input{
+      margin-bottom: 30px;
+      margin-top: 10px;
+      width: 40vh;
+      height: 30px;
+      border: 1px solid;
+      background-color: #F2F2F2;
+      padding: 10px;
+      letter-spacing: 6px;
+      font-size: 22px;
+  }
+
+  #iconos{
+      margin-right: 20px;
+  }
+
+  #div_botones{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+  }
+
+  .botones{
+      width: 20vh;
+      height: 50px;
+      border: 1px solid;
+      background-color: #F2F2F2;
+      letter-spacing: 4px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 50px;
+      padding: 3px;
+  }
+}
 </style>

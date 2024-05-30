@@ -228,4 +228,49 @@ const validate = () => {
 #boton:hover {
   color: rgb(218, 218, 255);
 }
+
+@media (max-width: 768px) {
+  #img_principal{
+    height: 50vh;
+  }
+  #div_arriba {
+    margin: 20px;
+
+    #eslogan {
+      margin: 20px;
+      font-size: 24px;
+    }
+
+    #pregunta {
+      font-size: 18px;
+    }
+  }
+
+  #formulario {
+    .inputs {
+      width: 80vw;
+      font-size: 16px;
+      margin: 10px;
+    }
+
+    #boton {
+      margin: 20px;
+      font-size: 18px;
+      padding: 10px;
+    }
+  }
+
+  #div_date {
+    #texto {
+      margin-left: 14px;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    #input_date {
+      width: 80vw;
+      font-size: 16px;
+    }
+  }
+}
 </style>

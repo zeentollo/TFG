@@ -86,23 +86,23 @@ onMounted(() => {
 }
 
 .prenda_img{
-    width: 50vh;
+    width: 45vh;
 }
 
 #titulo {
-    font-size: 40px;
+    font-size: 20px;
     font-weight: bold;
     letter-spacing: 4px;
 }
 #fecha {
-    font-size: 40px;
+    font-size: 20px;
     letter-spacing: 4px;
 }
 #info {
     background-color: #F5F5F5;
-    font-size: 36px;
-    padding: 60px;
-    margin: 50px;
+    font-size: 26px;
+    padding: 30px;
+    margin: 30px;
     display: flex;
     width: 80%;
 }
@@ -119,7 +119,7 @@ onMounted(() => {
     font-weight: 200;
     margin: 20px;
     letter-spacing: 4px;
-    font-size: 26px;
+    font-size: 16px;
 }
 #salir {
     width: 80vh;
@@ -136,5 +136,42 @@ onMounted(() => {
 #salir:hover {
     cursor: pointer;
     color: rgb(255, 226, 226);
+}
+
+@media screen and (max-width: 768px) {
+  #principal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  #div_titulo {
+    margin: 50px;
+    gap: 5vh;
+  }
+  #info{
+    font-size: 22px;
+    padding: 10px;
+    margin: 30px;
+    text-align: left;
+  }
+  .div_prenda{
+    margin: 20px;
+  }
+
+  .prenda_img{
+    width: 35vh;
+    margin: 10px;
+  }
+  #salir {
+    width: 35vh;
+    height: 50px;
+    padding: 5px;
+    font-size: 22px;
+    margin: 50px;
+  }
+
 }
 </style>

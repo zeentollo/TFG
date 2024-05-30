@@ -46,6 +46,16 @@ export default createStore({
     }
   },
   actions: {
-    
-  }
+    async loadUser({ commit }) {
+
+      try {
+        const usuarioGuardado = localStorage.getItem('usuario');
+        if (usuarioGuardado) {
+          commit('esNombreUsuario', usuarioGuardado);
+        }
+
+      } catch (error) {
+        console.error("Error al cargar el usuario:", error);
+      }
+    }}
 });

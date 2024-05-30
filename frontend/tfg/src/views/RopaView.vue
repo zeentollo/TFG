@@ -37,8 +37,9 @@
 
     <section id="section_carrito">
       <transition name="fade-slide">
-        <div id="carrito" v-if="productosEnCarrito && productosEnCarrito.length">
+        <div id="carrito" v-if="productosEnCarrito && productosEnCarrito.length"  v-show="mostrarCarrito">
           <h2 id="titulo_carrito">TU CESTA</h2>
+          <p @click="cerrarCarrito()" id="cerrar_carrito">X</p>
           <div v-if="productosEnCarrito.length === 0" class="producto_carrito">
             <p>¡Tu cesta está vacío!</p>
           </div>
@@ -75,6 +76,7 @@ const productosEnCarrito = computed(() => store.state.productosEnCarrito);
 const categoriaId = ref(0);
 const productos = ref([]);
 const tallas = ref([]);
+const mostrarCarrito = ref(false);
 
 const obtenerProductos = async () => {
   const responseCategoria = await axios.post("http://localhost:3000/subcategoria", { id: categoria.value }, {
@@ -112,6 +114,7 @@ const anadirAlCarrito = (producto, talla) => {
     title: 'Añadido',
     text: 'Prenda añadido al carrito.',
   });
+  mostrarCarrito.value = true;
 };
 
 const eliminarDelCarrito = (index) => {
@@ -137,6 +140,10 @@ const vaciarCarrito = () => {
       );
     }
   });
+};
+
+const cerrarCarrito = () => {
+  mostrarCarrito.value = false;
 };
 
 const mostrarTallas = computed(() => categoria.value !== 'bolsos');
@@ -257,8 +264,6 @@ const comprar = () => {
   max-height: 70vh;
 }
 
-
-
 #titulo_carrito {
   text-align: center;
   margin-bottom: 40px;
@@ -267,6 +272,19 @@ const comprar = () => {
 
 .producto_carrito {
   margin-bottom: 10px;
+}
+
+#cerrar_carrito{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#cerrar_carrito:hover{
+  color: rgb(182, 0, 0);
+  cursor: pointer;
 }
 
 .producto_nombre {
@@ -334,5 +352,26 @@ const comprar = () => {
 #vaciar_carrito:hover{
   cursor: pointer;
   color: #ff6161 ;
+}
+
+@media screen and (max-width: 768px) {
+  #img_principal{
+    width: 100%;
+    height: 50vh;
+  }
+  #texto_titulo {
+    font-size: 26px;
+    text-align: center;
+  }
+  .producto{
+    width: 80%;
+    padding: 20px;
+  }
+  .producto img {
+    width: 95%;
+  }
+  #cerrar_carrito{
+  color: rgb(182, 0, 0);
+}
 }
 </style>

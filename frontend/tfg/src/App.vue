@@ -23,34 +23,54 @@
   display: none; 
 }
 
-
-#titulo{
+#titulo {
   text-align: center;
   margin: 20px;
   font-weight: bold;
+  font-size: 2rem;
 }
 
-#footer{
+#footer {
   text-align: center;
   padding: 15px;
   background-color: #acacac;
-  #lista_footer{
+
+  #lista_footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     list-style-type: none;
-    li{
-      margin: 0 40px;
+    flex-wrap: wrap;
+    
+    li {
+      margin: 10px 20px;
       text-align: center;
-      font-size: 20px;
+      font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
     }
   }
 }
+
+@media (max-width: 600px) {
+  #titulo {
+    font-size: 1.5rem;
+    margin: 10px;
+  }
+
+  #footer {
+    padding: 10px;
+
+    #lista_footer {
+      flex-direction: column;
+      
+      li {
+        margin: 10px 0;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
 </style>
 
-<script>
-
-</script>

@@ -94,4 +94,34 @@ const seleccionarGenero = (genero) => {
     font-weight: bold;
   }
 }
+
+@media screen and (max-width: 768px) {
+  #img_principal{
+    height: 50vh;
+  }
+  #texto_titulo {
+    font-size: 26px;
+    text-align: center;
+  }
+  #texto_subtitulo {
+    font-size: 18px;
+  }
+  #seleccionar{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+  }
+  #div_hombre, #div_mujer {
+    picture {
+      img {
+        max-width: 300px;
+        max-height: 350px;
+      }
+    }
+    p {
+      font-size: 24px;
+    }
+  }
+}
+
 </style>
